@@ -1,0 +1,89 @@
+<!-- 搜索框 -->
+<view class='search'>
+  <input type='text' placeholder='{{search_text}}' bindinput='input' bindconfirm='confirm' />
+  <icon type='search' class='icons'></icon>
+  <view wx:for="{{list}}" wx:key='' class='lists'>
+    <text wx:if="{{item.show}}">{{item.name}}</text>
+  </view>
+</view>
+
+<!-- 公告栏 -->
+<view class='notice'>
+  <view class="notice_left">
+    <text class='iconfont icon-labagonggao voice'></text>
+    <view class="left-box">
+      <view class="left-text">
+        <image src="/imgs/公告.png" />
+      </view>
+      <view class='content-box'>
+        <view class='content-text' animation="{{animationData}}"><text id="text">{{text}}</text></view>
+      </view>
+      <view class="right-text"></view>
+    </view>
+  </view>
+</view>
+<!-- 公告栏 -->
+<view class='notice'>
+  <view class="notice_left">
+    <text class='iconfont icon-labagonggao voice'></text>
+    <view class="left-box">
+      <view class="left-text">
+        <image src="/imgs/公告.png" />
+      </view>
+      <view class='content-box'>
+        <view class='content-text' animation="{{animationData}}"><text id="text">{{text}}</text></view>
+      </view>
+      <view class="right-text"></view>
+    </view>
+  </view>
+</view>
+
+<!-- 热门推荐 -->
+<view class="hot_head">
+  <text class="left">热门训练&夏令营推荐</text>
+  <text class="right">| 最合你心意</text>
+</view>
+
+<!-- 热门内容 -->
+<view class='pageBox pageTwo'>
+  <swiper class='swiperClass' autoplay indicator-color="#a39f99" indicator-active-color="#f49641" indicator-dots interval="2000" duration="1000" previous-margin="60px" next-margin="60px" circular bindchange="bindchange" style='height: {{swiperHeight}}px'>
+    <block wx:for="{{best}}" wx:key="index">
+      <swiper-item>
+        <image class="slide-image {{swiperIdx == index ? 'active' : 'quiet'}}" src='{{url}}/image/{{goods[item][2]}}.jpg?{{random}}' bindtap='get_good_info' mode="aspectFill" data-index="{{item}}">
+        </image>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<!-- 折扣推荐 -->
+<view class="sale_head">
+  <text class="left">折扣训练营&夏令营推荐</text>
+  <text class="right">| 最合你钱包</text>
+</view>
+
+<!-- 折扣 -->
+<view class='list'>
+  <block wx:for="{{goods}}" wx:key="index">
+    <view class='list_item'>
+      <view class='img'>
+        <image src="{{url}}/image/{{item[2]}}.jpg?{{random}}" data-index="{{index}}" bindtap="get_good_info"></image>
+      </view>
+      <view class='info'>
+        <view class='title' data-index="{{index}}" bindtap="get_good_info">{{item[1]}}</view>
+        <view class="price">{{item[3]}}</view>
+        <view class="sales" wx:if='{{sales[index][0]>0}}'>浏览量:{{sales[index]}}人次</view>
+        <view class="sales" wx:if='{{sales[index][0]==null}}'>销量:0份</view>
+        <image class="add" src="{{img_src}}" data-index="{{item[0]}}" bindtap="add_good"></image>
+        <!-- <image class="minus" src="/imgs/minus.png" data-index="{{item[0]}}" bindtap="minus_good"></image> -->
+        <!-- <view class='selected'>已选 {{shopping_cart[item[0]]}} 份</view> -->
+      </view>
+    </view>
+  </block>
+</view>
+<view class='bottomview'>
+  <button class="cart" bindtap="goto_shooping_cart"> 下单 </button>
+</view>
+
+<!-- 页脚 -->
+<view class="blank">----已经到底了----</view>
